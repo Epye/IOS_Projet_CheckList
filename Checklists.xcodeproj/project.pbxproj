@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8A1D28620513237005B5201 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A1D28520513237005B5201 /* AddItemViewController.swift */; };
+		B8A1D28820514DC7005B5201 /* CheckListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */; };
 		B8DCDB65204851E600302065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB64204851E600302065 /* AppDelegate.swift */; };
-		B8DCDB67204851E600302065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB66204851E600302065 /* ViewController.swift */; };
+		B8DCDB67204851E600302065 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB66204851E600302065 /* CheckListViewController.swift */; };
 		B8DCDB6A204851E600302065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8DCDB68204851E600302065 /* Main.storyboard */; };
 		B8DCDB6C204851E600302065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8DCDB6B204851E600302065 /* Assets.xcassets */; };
 		B8DCDB6F204851E600302065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8DCDB6D204851E600302065 /* LaunchScreen.storyboard */; };
+		B8DCDB7720485C9600302065 /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB7620485C9600302065 /* CheckListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B8A1D28520513237005B5201 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItemCell.swift; sourceTree = "<group>"; };
 		B8DCDB61204851E600302065 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DCDB64204851E600302065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B8DCDB66204851E600302065 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B8DCDB66204851E600302065 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		B8DCDB69204851E600302065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B8DCDB6B204851E600302065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8DCDB6E204851E600302065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8DCDB70204851E600302065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8DCDB7620485C9600302065 /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				B8DCDB64204851E600302065 /* AppDelegate.swift */,
-				B8DCDB66204851E600302065 /* ViewController.swift */,
+				B8DCDB66204851E600302065 /* CheckListViewController.swift */,
 				B8DCDB68204851E600302065 /* Main.storyboard */,
 				B8DCDB6B204851E600302065 /* Assets.xcassets */,
 				B8DCDB6D204851E600302065 /* LaunchScreen.storyboard */,
 				B8DCDB70204851E600302065 /* Info.plist */,
+				B8DCDB7620485C9600302065 /* CheckListItem.swift */,
+				B8A1D28520513237005B5201 /* AddItemViewController.swift */,
+				B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -136,7 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DCDB67204851E600302065 /* ViewController.swift in Sources */,
+				B8DCDB7720485C9600302065 /* CheckListItem.swift in Sources */,
+				B8A1D28620513237005B5201 /* AddItemViewController.swift in Sources */,
+				B8DCDB67204851E600302065 /* CheckListViewController.swift in Sources */,
+				B8A1D28820514DC7005B5201 /* CheckListItemCell.swift in Sources */,
 				B8DCDB65204851E600302065 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
