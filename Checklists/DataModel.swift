@@ -33,7 +33,6 @@ class DataModel {
         do {
             let data = try encoder.encode(listCheckList)
             try data.write(to: dataFileUrl)
-            print(dataFileUrl.absoluteString)
         } catch {
             
         }
@@ -47,5 +46,9 @@ class DataModel {
         } catch {
             
         }
+    }
+    
+    public func sortCheckList(){
+        listCheckList = listCheckList.sorted{ $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
 }

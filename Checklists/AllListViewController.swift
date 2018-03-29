@@ -5,10 +5,27 @@ class AllListViewController: UITableViewController {
         super.init(coder: aDecoder)!
         
         DataModel.sharedInstance.loadCheckList()
+        DataModel.sharedInstance.sortCheckList()
+    }
+    
+    func configureDetailTitle(_ cell: UITableViewCell, _ item: Checklist){
+        if(item.items.count == 0){
+            cell.detailTextLabel?.text = "No Item"
+        } else if(item.uncheckedItemsCount == 0){
+            cell.detailTextLabel?.text = "All Done!"
+        } else {
+            cell.detailTextLabel?.text = String(item.uncheckedItemsCount)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,8 +38,10 @@ class AllListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = DataModel.sharedInstance.listCheckList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckList", for: indexPath)
-        cell.textLabel?.text = DataModel.sharedInstance.listCheckList[indexPath.row].name
+        cell.textLabel?.text = item.name
+        self.configureDetailTitle(cell, item)
         return cell
     }
     
@@ -57,12 +76,14 @@ extension AllListViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAddingItem item: Checklist) {
         controller.dismiss(animated: true)
         DataModel.sharedInstance.listCheckList.append(item)
+        DataModel.sharedInstance.sortCheckList()
         let index = IndexPath(item: DataModel.sharedInstance.listCheckList.count-1, section: 0)
         tableView.insertRows(at: [index], with: UITableViewRowAnimation.fade)
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingItem item: Checklist) {
         controller.dismiss(animated: true)
+        DataModel.sharedInstance.sortCheckList()
         let index = IndexPath(item: DataModel.sharedInstance.listCheckList.index(where: {$0 === item})!, section: 0)
         tableView.reloadRows(at: [index], with: UITableViewRowAnimation.fade)
     }
