@@ -12,6 +12,8 @@ class CheckListViewController: UITableViewController {
     
     var CheckListItems: Array<CheckListItem> = []
     
+    var list: Checklist!
+    
     var documentDirectory: URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
     
     var dataFileUrl: URL = URL(fileURLWithPath: "")
@@ -26,6 +28,8 @@ class CheckListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = list.name
     }
 
     func saveCheckListItems(){
