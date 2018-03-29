@@ -10,47 +10,16 @@ import UIKit
 
 class CheckListViewController: UITableViewController {
     
-    var CheckListItems: Array<CheckListItem> = []
-    
     var list: Checklist!
-    
-    var documentDirectory: URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
-    
-    var dataFileUrl: URL = URL(fileURLWithPath: "")
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         
-        let file = "data.json"
-        dataFileUrl = documentDirectory.appendingPathComponent(file)
-        self.loadCheckListItems()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = list.name
-    }
-
-    func saveCheckListItems(){
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let data = try encoder.encode(CheckListItems)
-            try data.write(to: dataFileUrl)
-        } catch {
-            
-        }
-    }
-    
-    func loadCheckListItems(){
-        let decoder = JSONDecoder()
-        do {
-            let data = try String(contentsOf: dataFileUrl, encoding: .utf8).data(using: .utf8)
-            CheckListItems = try decoder.decode([CheckListItem].self, from: data!)
-        } catch {
-            
-        }
     }
     
     func configureCheckMark(for cell: CheckListItemCell, withItem item: CheckListItem){
@@ -71,23 +40,21 @@ class CheckListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        CheckListItems[indexPath.row].toggleChecked()
+        list.items[indexPath.row].toggleChecked()
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-        saveCheckListItems()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.CheckListItems.count
+        return self.list.items.count
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        CheckListItems.remove(at: indexPath.row)
+        list.items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-        saveCheckListItems()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = self.CheckListItems[indexPath.row]
+        let item = self.list.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItem", for: indexPath) as! CheckListItemCell
         configureText(for: cell, withItem: item)
         configureCheckMark(for: cell, withItem: item)
@@ -104,7 +71,7 @@ class CheckListViewController: UITableViewController {
             if let navVC = segue.destination as? UINavigationController,
                 let destVC = navVC.topViewController as? ItemDetailViewController  {
                 let cell = sender as! CheckListItemCell
-                destVC.itemToEdit = CheckListItems[(tableView.indexPath(for: cell)?.row)!]
+                destVC.itemToEdit = list.items[(tableView.indexPath(for: cell)?.row)!]
                 destVC.delegate = self
             }
         }
@@ -118,17 +85,15 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAddingItem item: CheckListItem) {
         controller.dismiss(animated: true)
-        CheckListItems.append(item)
-        let index = IndexPath(item: CheckListItems.count-1, section: 0)
+        list.items.append(item)
+        let index = IndexPath(item: list.items.count-1, section: 0)
         tableView.insertRows(at: [index], with: UITableViewRowAnimation.fade)
-        saveCheckListItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: CheckListItem) {
         controller.dismiss(animated: true)
-        let index = IndexPath(item: CheckListItems.index(where: {$0 === item})!, section: 0)
+        let index = IndexPath(item: list.items.index(where: {$0 === item})!, section: 0)
         tableView.reloadRows(at: [index], with: UITableViewRowAnimation.fade)
-        saveCheckListItems()
     }
 }
 
