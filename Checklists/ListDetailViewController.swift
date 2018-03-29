@@ -15,15 +15,22 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     
     var delegate: ListDetailViewControllerDelegate!
     var itemToEdit: Checklist!
+    var icon: IconAsset = IconAsset.Folder
     
     @IBOutlet weak var textFieldScreen: UITextField!
+    
+    @IBOutlet weak var imageViewDetail: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageViewDetail.image = icon.image
+        
         if let edit = itemToEdit {
             self.navigationItem.title = "Edit Checklist"
             textFieldScreen.text = edit.name
+            imageViewDetail.image = edit.icon.image
+            self.icon = edit.icon
         }
     }
     
@@ -35,18 +42,39 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
         if let item = textFieldScreen.text {
             if let edit = itemToEdit {
                 itemToEdit.name = item
+                itemToEdit.icon = self.icon
                 delegate.listDetailViewController(self, didFinishEditingItem: itemToEdit)
             }else {
-                delegate.listDetailViewController(self, didFinishAddingItem: Checklist(name: item))
+                delegate.listDetailViewController(self, didFinishAddingItem: Checklist(name: item, icon: self.icon))
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editIcon"{
+            if let dest = segue.destination as? IconPickerViewController {
+                dest.delegate = self
+            }
+        }
+    }
+    
+    func iconChange(newIcon: IconAsset){
+        if let edit = itemToEdit, edit.icon != newIcon {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        
+        self.icon = newIcon
+        self.imageViewDetail.image = self.icon.image
     }
     
     override func viewWillAppear(_ animated: Bool) {
         textFieldScreen.delegate = self
         textFieldScreen.becomeFirstResponder()
-        if itemToEdit == nil{
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        if let edit = itemToEdit, edit.icon != self.icon {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     
@@ -54,6 +82,8 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
         if let oldString = textField.text {
             let newString = oldString.replacingCharacters(in: Range(range, in: oldString)!, with: string)
             if newString.isEmpty {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            } else if let edit = itemToEdit, newString == edit.name {
                 self.navigationItem.rightBarButtonItem?.isEnabled = false
             } else {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true

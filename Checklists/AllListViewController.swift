@@ -42,6 +42,7 @@ class AllListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckList", for: indexPath)
         cell.textLabel?.text = item.name
         self.configureDetailTitle(cell, item)
+        cell.imageView?.image = item.icon.image
         return cell
     }
     

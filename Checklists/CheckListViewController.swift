@@ -14,12 +14,12 @@ class CheckListViewController: UITableViewController {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = list.name
+        self.view.tintColor = UIColor.purple
     }
     
     func configureCheckMark(for cell: CheckListItemCell, withItem item: CheckListItem){
