@@ -59,11 +59,19 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func done() {
         if let item = textFieldScreen.text {
-            if let edit = itemToEdit {
+            if (itemToEdit) != nil {
                 itemToEdit.Text = item
+                itemToEdit.shouldRemind = shouldRemindSwitch.isOn
+                itemToEdit.dueDate = dueDate
                 delegate.itemDetailViewController(self, didFinishEditingItem: itemToEdit)
             }else {
-                delegate.itemDetailViewController(self, didFinishAddingItem: CheckListItem(text: item))
+                var itemList: CheckListItem
+                if shouldRemindSwitch.isOn {
+                    itemList = CheckListItem(text: item, checked: false, dueDate: dueDate, shouldRemind: true)
+                } else {
+                    itemList = CheckListItem(text: item)
+                }
+                delegate.itemDetailViewController(self, didFinishAddingItem: itemList)
             }
         }
     }

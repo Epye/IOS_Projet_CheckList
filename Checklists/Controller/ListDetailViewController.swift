@@ -40,7 +40,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func done() {
         if let item = textFieldScreen.text {
-            if let edit = itemToEdit {
+            if (itemToEdit) != nil {
                 itemToEdit.name = item
                 itemToEdit.icon = self.icon
                 delegate.listDetailViewController(self, didFinishEditingItem: itemToEdit)

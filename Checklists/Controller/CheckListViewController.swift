@@ -86,6 +86,7 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAddingItem item: CheckListItem) {
         controller.dismiss(animated: true)
         list.items.append(item)
+        item.scheduleNotification()
         let index = IndexPath(item: list.items.count-1, section: 0)
         tableView.insertRows(at: [index], with: UITableViewRowAnimation.fade)
     }
@@ -93,6 +94,7 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: CheckListItem) {
         controller.dismiss(animated: true)
         let index = IndexPath(item: list.items.index(where: {$0 === item})!, section: 0)
+        item.scheduleNotification()
         tableView.reloadRows(at: [index], with: UITableViewRowAnimation.fade)
     }
 }

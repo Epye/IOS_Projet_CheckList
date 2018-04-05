@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class CheckListItem : Codable{
     var itemID: Int = 0
@@ -33,5 +34,25 @@ class CheckListItem : Codable{
     
     func toggleChecked(){
         self.Checked = !self.Checked
+    }
+    
+    func scheduleNotification(){
+        let center = UNUserNotificationCenter.current()
+        
+        center.removePendingNotificationRequests(withIdentifiers: [String(itemID)])
+
+        if shouldRemind && dueDate > Date() {
+            let content = UNMutableNotificationContent()
+            content.title = Text
+            content.body = Text
+            content.sound = UNNotificationSound.default()
+            
+            let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: dueDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: String(itemID), content: content, trigger: trigger)
+
+            center.add(request, withCompletionHandler: { (error) in })
+        }
     }
 }
