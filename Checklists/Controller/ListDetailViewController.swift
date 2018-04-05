@@ -75,6 +75,8 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         if let edit = itemToEdit, edit.icon != self.icon {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else if !(textFieldScreen.text?.isEmpty)! && itemToEdit == nil {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     

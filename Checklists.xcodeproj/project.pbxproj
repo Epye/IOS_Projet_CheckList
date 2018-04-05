@@ -14,6 +14,8 @@
 		B86F8952206CC6610084BBE0 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86F8951206CC6610084BBE0 /* AllListViewController.swift */; };
 		B8A1D28620513237005B5201 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A1D28520513237005B5201 /* ItemDetailViewController.swift */; };
 		B8A1D28820514DC7005B5201 /* CheckListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */; };
+		B8AC0DE8207606D900186186 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8AC0DE7207606D900186186 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B8AC0DEA2076186900186186 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AC0DE92076186900186186 /* Preference.swift */; };
 		B8DCDB65204851E600302065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB64204851E600302065 /* AppDelegate.swift */; };
 		B8DCDB67204851E600302065 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB66204851E600302065 /* CheckListViewController.swift */; };
 		B8DCDB6A204851E600302065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8DCDB68204851E600302065 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		B86F8951206CC6610084BBE0 /* AllListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		B8A1D28520513237005B5201 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItemCell.swift; sourceTree = "<group>"; };
+		B8AC0DE7207606D900186186 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		B8AC0DE92076186900186186 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		B8DCDB61204851E600302065 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DCDB64204851E600302065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8DCDB66204851E600302065 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
@@ -43,17 +47,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AC0DE8207606D900186186 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B8AC0DE6207606D900186186 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8AC0DE7207606D900186186 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8AC0DEB207652D500186186 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B86F8951206CC6610084BBE0 /* AllListViewController.swift */,
+				B80F5D24206CE09400F92FBA /* ListDetailViewController.swift */,
+				B80F5D28206D1E8300F92FBA /* IconPickerViewController.swift */,
+				B8DCDB66204851E600302065 /* CheckListViewController.swift */,
+				B8A1D28520513237005B5201 /* ItemDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8AC0DED207652F500186186 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8DCDB7620485C9600302065 /* CheckListItem.swift */,
+				B80F5D26206CF4FC00F92FBA /* DataModel.swift */,
+				B8AC0DE92076186900186186 /* Preference.swift */,
+				B80F5D22206CD07200F92FBA /* Checklist.swift */,
+				B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B8DCDB58204851E600302065 = {
 			isa = PBXGroup;
 			children = (
 				B8DCDB63204851E600302065 /* Checklists */,
 				B8DCDB62204851E600302065 /* Products */,
+				B8AC0DE6207606D900186186 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,19 +106,12 @@
 		B8DCDB63204851E600302065 /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
+				B8AC0DED207652F500186186 /* Model */,
+				B8AC0DEB207652D500186186 /* Controller */,
 				B8DCDB64204851E600302065 /* AppDelegate.swift */,
-				B8DCDB66204851E600302065 /* CheckListViewController.swift */,
 				B8DCDB68204851E600302065 /* Main.storyboard */,
 				B8DCDB6B204851E600302065 /* Assets.xcassets */,
 				B8DCDB70204851E600302065 /* Info.plist */,
-				B8DCDB7620485C9600302065 /* CheckListItem.swift */,
-				B8A1D28520513237005B5201 /* ItemDetailViewController.swift */,
-				B8A1D28720514DC7005B5201 /* CheckListItemCell.swift */,
-				B86F8951206CC6610084BBE0 /* AllListViewController.swift */,
-				B80F5D22206CD07200F92FBA /* Checklist.swift */,
-				B80F5D24206CE09400F92FBA /* ListDetailViewController.swift */,
-				B80F5D26206CF4FC00F92FBA /* DataModel.swift */,
-				B80F5D28206D1E8300F92FBA /* IconPickerViewController.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -161,6 +192,7 @@
 				B8A1D28620513237005B5201 /* ItemDetailViewController.swift in Sources */,
 				B80F5D29206D1E8300F92FBA /* IconPickerViewController.swift in Sources */,
 				B8DCDB67204851E600302065 /* CheckListViewController.swift in Sources */,
+				B8AC0DEA2076186900186186 /* Preference.swift in Sources */,
 				B8A1D28820514DC7005B5201 /* CheckListItemCell.swift in Sources */,
 				B8DCDB65204851E600302065 /* AppDelegate.swift in Sources */,
 				B80F5D23206CD07200F92FBA /* Checklist.swift in Sources */,

@@ -46,6 +46,11 @@ class DataModel {
         } catch {
             
         }
+        if Preference.sharedInstance.firstLaunch {
+            listCheckList.append(Checklist(name: "Edit your first item, Swipe me for delete"))
+            Preference.sharedInstance.firstLaunch = false
+            saveCheckList()
+        }
     }
     
     public func sortCheckList(){

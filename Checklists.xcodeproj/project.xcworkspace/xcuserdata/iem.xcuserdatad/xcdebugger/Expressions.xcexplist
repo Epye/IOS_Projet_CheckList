@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ItemDetailViewController.tableView(_:didSelectRowAt:):ItemDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.reuseIdentifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemDetailViewController.tableView(_:willSelectRowAt:):ItemDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "cell.reuseIdentifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataModel.loadCheckList():DataModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Preference.sharedInstance.firstLaunch">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemDetailViewController.showDatePicker():ItemDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dueDateLabel.textColor">
+            </PersistentString>
+            <PersistentString
+               value = "UIColor.purple">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemDetailViewController.tableView(_:numberOfRowsInSection:):ItemDetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ItemDetailViewController.hideDatePicker():ItemDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dueDateLabel.textColor">
+            </PersistentString>
+            <PersistentString
+               value = "UIColor.purple">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
